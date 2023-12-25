@@ -1,0 +1,6 @@
+{
+    "subscriptionId": "development-subscriptionId",
+    "resourceGroupName": "rg-d-nttd-test",
+    "env": "dev"
+}
+  

@@ -1,0 +1,24 @@
+{
+  "vm1":{
+      "vmName": "vm-d-BicepTest-01",
+      "vmSize": "Standard_B1ls",
+      "OSVersion": "18.04-LTS",
+      "OSDiskType": "Standard_LRS",
+      "adminUsername": "adminuser01",
+      "adminPassword": "adminuser01Pass",
+      "vnet": "vnet-d-BicepTest-01",
+      "subnet": "sb-d-BicepTest-01",
+      "nsg":"nsg-d-BicepTest-01"
+  },
+  "vm2":{
+      "vmName": "vm-d-BicepTest-02",
+      "vmSize": "Standard_B1ls",
+      "OSVersion": "18.04-LTS",
+      "OSDiskType": "Standard_LRS",
+      "adminUsername": "adminuser01",
+      "adminPassword": "adminuser01Pass" ,
+      "vnet": "vnet-d-BicepTest-01",
+      "subnet": "sb-d-BicepTest-02",
+      "nsg":"nsg-d-BicepTest-02"
+  }
+}

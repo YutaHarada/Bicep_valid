@@ -1,0 +1,64 @@
+{
+  "nsg1":{
+    "nsgName": "nsg-d-BicepTest-01",
+    "securityRules": [
+      {
+        "name": "test-inbound-rule-01",
+        "properties": {
+          "direction": "Inbound",
+          "sourceAddressPrefix": "VirtualNetwork",
+          "sourcePortRange": "*",
+          "destinationAddressPrefix": "*",
+          "destinationPortRange": "80",
+          "protocol": "TCP",
+          "access": "Allow",
+          "priority": 100
+        }
+      },
+      {
+        "name": "test-outbound-rule-01",
+        "properties": {
+          "direction": "Outbound",
+          "sourceAddressPrefix": "*",
+          "sourcePortRange": "*",
+          "destinationAddressPrefix": "*",
+          "destinationPortRange": "*",
+          "protocol": "*",
+          "access": "Deny",
+          "priority": 100
+        }
+      }
+    ]
+  },
+  "nsg2":{
+    "nsgName": "nsg-d-BicepTest-02",
+    "securityRules": [
+      {
+        "name": "test-inbound-rule-02",
+        "properties": {
+          "direction": "Inbound",
+          "sourceAddressPrefix": "VirtualNetwork",
+          "sourcePortRange": "*",
+          "destinationAddressPrefix": "*",
+          "destinationPortRange": "80",
+          "protocol": "TCP",
+          "access": "Allow",
+          "priority": 100
+        }
+      },
+      {
+        "name": "test-outbound-rule-02",
+        "properties": {
+          "direction": "Outbound",
+          "sourceAddressPrefix": "*",
+          "sourcePortRange": "*",
+          "destinationAddressPrefix": "*",
+          "destinationPortRange": "*",
+          "protocol": "*",
+          "access": "Deny",
+          "priority": 100
+        }
+      }
+    ]
+  }  
+}

@@ -1,0 +1,53 @@
+trigger:
+- none
+
+variables:
+  ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
+    envname: "prd"
+  ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/staging') }}:
+    envname: "stg"
+  ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/develop') }}:
+    envname: "dev"
+  bicepfilepath: "./env/main.bicep"
+
+stages:
+- stage: samplestage
+
+  jobs:
+  - job: 'WhatifJob'
+    pool:
+      vmImage: windows-latest
+    steps:
+    - task: AzurePowerShell@5
+      inputs:
+        azureSubscription: $(ServiceConnectionName)
+        TargetAzurePs: LatestVersion
+        ScriptType: 'InlineScript'
+        Inline: |
+          $result = Get-AzDeploymentWhatIfResult -Location "Japan East" -TemplateFile '$(bicepfilepath)'-TemplateParameterObject @{"envname" = $(envname)}
+          echo $result   
+
+  - job: 'validationjob'
+    pool: server
+    steps:
+    - task: ManualValidation@0
+      inputs:
+        notifyUsers: 'yuta.harada@jp.nttdata.com'
+        instructions: 'Check output of bicep what-if and confirm'
+
+  - job: 'DeployBicepJob'
+    dependsOn: 'validationjob'
+    pool:
+      vmImage: windows-latest
+    steps:
+    - task: AzureResourceManagerTemplateDeployment@3
+      inputs:
+        deploymentScope: 'Subscription'
+        azureResourceManagerConnection: $(ServiceConnectionName)
+        action: 'Create Or Update Resource Group'
+        location: 'japaneast'
+        templateLocation: 'Linked artifact'
+        csmFile: '$(bicepfilepath)'
+        deploymentMode: 'Incremental'
+        deploymentName: 'DeployPipelineTemplate'
+        overrideParameters: '–envname $(envname)'

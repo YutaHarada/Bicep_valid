@@ -1,0 +1,6 @@
+{
+    "subscriptionId": "production-subscriptionId",
+    "resourceGroupName": "rg-p-nttd-test",
+    "env": "prd"
+}
+  

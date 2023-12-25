@@ -1,0 +1,6 @@
+{
+    "subscriptionId": "staging-subscript",
+    "resourceGroupName": "rg-s-nttd-test",
+    "env": "stg"
+}
+  

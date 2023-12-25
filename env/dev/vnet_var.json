@@ -1,0 +1,20 @@
+{ 
+  "vnet1":{
+    "vnetName":"vnet-d-BicepTest-01",
+    "addressPrefix": "10.255.255.128/25",
+    "subnets": {
+      "subnet1":{
+        "name": "sb-d-BicepTest-01",
+        "properties": {
+          "addressPrefix": "10.255.255.128/27"
+        }
+      },
+      "subnet2":{
+        "name": "sb-d-BicepTest-02",
+        "properties": {
+          "addressPrefix": "10.255.255.160/27"
+        }
+      }
+    }
+  }
+}
